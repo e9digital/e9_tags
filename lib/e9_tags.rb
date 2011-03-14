@@ -5,7 +5,7 @@ require 'e9_tags/tagging_extension'
 module E9Tags
   autoload :Controller, 'e9_tags/controller'
   autoload :Model,      'e9_tags/model'
-  autoload :Helpers,    'e9_tags/helpers'
+  autoload :Helper,     'e9_tags/helper'
 
   class << self
     def escape_context(c)
@@ -22,7 +22,7 @@ module E9Tags
 
     initializer 'e9_tags.helpers' do
       ActiveSupport.on_load(:action_controller) do
-        include E9Tags::Helpers
+        include E9Tags::Helper
       end
     end
 
