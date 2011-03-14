@@ -1,0 +1,31 @@
+- content_for :bottom_javascripts do
+  :javascript
+    var tag_template = "#{escape_javascript(tag_template(f.object))}";
+%fieldset.tags
+  %legend= label_tag 'add-tag-fld', e9_t(:tags_name)
+  #tag-fields
+    - if local_assigns[:context]
+      = hidden_field_tag 'tag-context', local_assigns[:context]
+    - else
+      .actions
+        %input{:type => "checkbox", :id => "tag-context-hidden-cb"}
+        %label{:for => "tag-context-hidden-cb", :title => e9_t(:tag_context_visible), :"data-toggle-title" => e9_t(:tag_context_hidden)} 
+          Visible?
+      .field
+        = label_tag 'tag-context', e9_t(:tag_context_name).singularize
+        = text_field_tag 'tag-context', nil
+    .field
+      = label_tag 'add-tag-fld', e9_t(:tags_name).singularize
+      = text_field_tag 'add-tag-fld', nil
+    .actions
+      %button#add-tag-btn= e9_t(:add_tag_link)
+      %button{:title => e9_t(:tag_instructions), :rel => 'tooltip'} ?
+
+  #tag-contexts
+    - f.object.tagging_contexts(:show_all => true).each do |context|
+      - h_context = humanize_context(E9Tags.unescape_context(context))
+      %div{:id => "#{context}-context-list", :class => 'context-list'}
+        %span= h_context
+        %ul
+          - f.object.tag_list_on(context).each do |tag_word|
+            = tag_template(f.object, tag_word, h_context, context)
