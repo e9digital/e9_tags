@@ -1,8 +1,8 @@
-require 'rails/generators/named_base'
+require 'rails/generators/base'
 
 module E9Tags
   module Generators
-    class InstallGenerator < Rails::Generator::NamedBase
+    class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
 
       def install_javascript
