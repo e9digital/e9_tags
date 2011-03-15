@@ -7,6 +7,12 @@ module E9Tags
   autoload :Model,      'e9_tags/model'
   autoload :Helper,     'e9_tags/helper'
 
+  module Rack
+    autoload :TagAutoCompleter,         'e9_tags/rack/tag_auto_completer'
+    autoload :TagContextAutoCompleter,  'e9_tags/rack/tag_context_auto_completer'
+    autoload :TagsJs,                   'e9_tags/rack/tags_js'
+  end
+
   class << self
     def escape_context(c)
       c.downcase.gsub(/\s+/, '__S__').gsub(/-/, '__D__').sub(/\(hidden\)/, '__H__')
