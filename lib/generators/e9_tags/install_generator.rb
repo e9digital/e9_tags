@@ -6,7 +6,7 @@ module E9Tags
       source_root File.expand_path('../templates', __FILE__)
 
       def install_javascript
-        copy_file 'tags.js', 'public/javascripts/tags.js'
+        copy_file 'e9_tags.js', 'public/javascripts/e9_tags.js'
       end
     end
   end
