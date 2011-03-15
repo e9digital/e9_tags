@@ -1,6 +1,6 @@
 <!--BEGIN e9_tags_js-->
 :javascript
-  var tag_template = "#{escape_javascript(tag_template(f.object))}";
+  var tag_template = "#{escape_javascript(tag_template(f.object).html_safe)}";
 <!--END e9_tags_js-->
 
 %fieldset.tags
@@ -17,7 +17,7 @@
         = label_tag 'tag-context', t(:tag_context_name, :scope => :e9_tags).singularize
         = text_field_tag 'tag-context', nil
     .field
-      = label_tag 'add-tag-fld', t(:tags_name).singularize
+      = label_tag 'add-tag-fld', t(:tags_name, :scope => :e9_tags).singularize
       = text_field_tag 'add-tag-fld', nil
     .actions
       %button#add-tag-btn= t(:add_tag_link, :scope => :e9_tags)
