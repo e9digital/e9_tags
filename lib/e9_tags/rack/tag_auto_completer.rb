@@ -20,18 +20,8 @@ module E9Tags::Rack
                      #having('count > 0'). # having count > 0 is unnecessary because of the join type
                      order('name ASC')
 
-          # NOTE realized after the fact that the "hidden" concept is probably unnecessary, as the
-          # "context" in public side tag completion is *always* tags and that by itself will filter out
-          # hidden tags.
-          #
-          # TODO remove this concept, and remove it from the tags.js where this param is passed
-          #
-          if @params['hidden'] != '1'
-            relation = relation.where(taggings[:context].matches('%__H__').not)
-          end
-
           if @context = @params['context']
-            relation = relation.where(taggings[:context].eq(E9Tags.escape_context(@context))) 
+            relation = relation.where(taggings[:context].matches(E9Tags.escape_context(@context))) 
           end
 
           # NOTE this select is stolen from Arel::SelectManager's deprecated to_a method, but since Arel has been re-written

@@ -23,11 +23,11 @@
       %button#add-tag-btn= t(:add_tag_link, :scope => :e9_tags)
       %button{:title => t(:tag_instructions, :scope => :e9_tags), :rel => 'tooltip'} ?
 
-  #tag-contexts
+  #tag-contexts{:class => local_assigns[:context] ? 'locked-context' : nil }
     - f.object.tagging_contexts(:show_all => true).each do |context|
       - h_context = humanize_context(E9Tags.unescape_context(context))
       %div{:id => "#{context}-context-list", :class => 'context-list'}
-        %span= h_context
+        %span.context-header= h_context
         %ul
           - f.object.tag_list_on(context).each do |tag_word|
             = tag_template(f.object, tag_word, h_context, context)
