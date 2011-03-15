@@ -1,6 +1,8 @@
-- content_for :bottom_javascripts do
-  :javascript
-    var tag_template = "#{escape_javascript(tag_template(f.object))}";
+<!--BEGIN e9_tags_js-->
+:javascript
+  var tag_template = "#{escape_javascript(tag_template(f.object))}";
+<!--END e9_tags_js-->
+
 %fieldset.tags
   %legend= label_tag 'add-tag-fld', e9_t(:tags_name)
   #tag-fields
