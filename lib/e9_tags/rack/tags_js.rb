@@ -1,9 +1,11 @@
+#require File.expand_path('../../../config/environment',  __FILE__) unless defined?(Rails)
+
 module E9Tags::Rack
   class TagsJs
     def self.call(env)
       @params = Rack::Request.new(env).params
 
-      tags = Tagging.joins(:tag).order('tags.name').group_by(&:context).to_json
+      tags = ::Tagging.joins(:tag).order('tags.name').group_by(&:context).to_json
 
       js = "window.e9=window.e9||{};window.e9.tags=#{tags};"
 

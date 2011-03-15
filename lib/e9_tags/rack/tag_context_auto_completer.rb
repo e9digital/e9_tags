@@ -1,3 +1,5 @@
+#require File.expand_path('../../../config/environment',  __FILE__) unless defined?(Rails)
+
 module E9Tags::Rack
   class TagContextAutoCompleter
     DEFAULT_LIMIT = 10
@@ -8,17 +10,22 @@ module E9Tags::Rack
 
         if @term = Rack::Request.new(env).params['term']
 
-          taggings = Table(:taggings)
-          terms = taggings.group(taggings[:context]).
-                           where(taggings[:context].matches("#{@term}%")).
-                           project(taggings[:context], taggings[:context].count.as('count')).
-                           take(DEFAULT_LIMIT).
-                           order('context ASC')
+          taggings = ::Tagging.arel_table
 
-          # NOTE arel arrays don't support map!
-          terms = terms.map do |tagging| 
-            unescaped_context = Taggable.unescape_context(tagging.tuple[0])
-            { :label => "#{unescaped_context} - #{tagging.tuple[1]}", :value => unescaped_context, :count => tagging.tuple[1] }
+          relation = taggings.
+                     group(taggings[:context]).
+                     where(taggings[:context].matches("#{@term}%")).
+                     project(taggings[:context], taggings[:context].count.as('count')).
+                     take(DEFAULT_LIMIT).
+                     order('context ASC')
+
+          # NOTE this select is stolen from Arel::SelectManager's deprecated to_a method, but since Arel has been re-written
+          #      (and even before that) it'd probably be smarter here to avoid arel tables and just use AR and to_json
+          #   
+          terms = ::ActiveRecord::Base.send(:select, relation.to_sql, 'Tag Context Autocomplete').each do |row| 
+            unescaped_context = E9Tags.unescape_context(row['context'])
+
+            { :label => "#{unescaped_context} - #{row['count']}", :value => unescaped_context, :count => row['count'] }
           end
         end
 
