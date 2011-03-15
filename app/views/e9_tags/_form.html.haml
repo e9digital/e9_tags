@@ -4,24 +4,24 @@
 <!--END e9_tags_js-->
 
 %fieldset.tags
-  %legend= label_tag 'add-tag-fld', e9_t(:tags_name)
+  %legend= label_tag 'add-tag-fld', t(:tags_name, :scope => :e9_tags)
   #tag-fields
     - if local_assigns[:context]
       = hidden_field_tag 'tag-context', local_assigns[:context]
     - else
       .actions
         %input{:type => "checkbox", :id => "tag-context-hidden-cb"}
-        %label{:for => "tag-context-hidden-cb", :title => e9_t(:tag_context_visible), :"data-toggle-title" => e9_t(:tag_context_hidden)} 
+        %label{:for => "tag-context-hidden-cb", :title => t(:tag_context_visible, :scope => :e9_tags), :"data-toggle-title" => e9_t(:tag_context_hidden)} 
           Visible?
       .field
-        = label_tag 'tag-context', e9_t(:tag_context_name).singularize
+        = label_tag 'tag-context', t(:tag_context_name, :scope => :e9_tags).singularize
         = text_field_tag 'tag-context', nil
     .field
-      = label_tag 'add-tag-fld', e9_t(:tags_name).singularize
+      = label_tag 'add-tag-fld', t(:tags_name).singularize
       = text_field_tag 'add-tag-fld', nil
     .actions
-      %button#add-tag-btn= e9_t(:add_tag_link)
-      %button{:title => e9_t(:tag_instructions), :rel => 'tooltip'} ?
+      %button#add-tag-btn= t(:add_tag_link, :scope => :e9_tags)
+      %button{:title => t(:tag_instructions, :scope => :e9_tags), :rel => 'tooltip'} ?
 
   #tag-contexts
     - f.object.tagging_contexts(:show_all => true).each do |context|
