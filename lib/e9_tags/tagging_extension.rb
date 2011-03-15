@@ -22,14 +22,6 @@ module E9Tags
       def as_json(options = {})
         tag.try(:name)
       end
-
-      # monkeypatch association method to also store the subclass
-      def taggable_with_subclass(taggable)
-        self.sub_taggable_type = taggable.class.to_s
-        taggable_without_subclass(taggable)
-      end
-      alias :taggable_without_subclass :taggable=
-      alias :taggable= :taggable_with_subclass
     end
 
     module ClassMethods
