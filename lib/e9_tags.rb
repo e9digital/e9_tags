@@ -32,7 +32,7 @@ module E9Tags
   ESCAPED_SPACE_REGEX      = Regexp.new(Regexp.escape(ESCAPED_SPACE), true)
 
   ESCAPED_PRIVATE          = '__H__'
-  ESCAPED_PRIVATE_REGEX    = Regexp.new(Regexp.escape(ESCAPED_SPACE), true)
+  ESCAPED_PRIVATE_REGEX    = Regexp.new(Regexp.escape(ESCAPED_PRIVATE_REGEX), true)
 
   PRIVATE_TAG_SUFFIX       = '*'
   PRIVATE_TAG_SUFFIX_REGEX = Regexp.new(Regexp.escape(PRIVATE_TAG_SUFFIX), true)
