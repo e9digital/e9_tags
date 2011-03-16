@@ -73,7 +73,10 @@ module E9Tags
     def tag_lists=(hash)
       self.clear_all_tags
       hash.each do |context, tags|
-        self.set_tag_list_on(context.to_s.sub(/_tag_list$/, ''), tags)
+        c = context.to_s.sub(/_tag_list$/, '')
+        c = E9Tags.escape_context(c)
+
+        self.set_tag_list_on(c, tags)
       end
     end
 
