@@ -27,6 +27,19 @@ Installation
         E9Tags.controllers << ContactsController
         E9Tags.models << Contact
 
-6.  Render the tags form partial in whatever model forms require it.  If you pass a context, it will be locked and
-    no longer possible to change/add the contexts on the form (and as a side effect, the tags autocompletion will be
-    restricted to that context).
+6.  Render the tags form partial in whatever model forms require it.  
+
+        = render 'e9_tags/form', :f => f
+
+    If you pass a context, it will be locked and no longer possible to change/add the contexts on the form (and as 
+    a side effect, the tags autocompletion will be restricted to that context).
+
+        = render 'e9_tags/form', :f => f, :context => :users
+
+    Finally if you pass a 2nd arg to :context you can set a tag context to be "private" (default is false).  In this
+    case the tag context will be locked as private (typically suffixed with *), meaning that the tags will not be
+    publicly searchable/visible.  This is useful for organizational tags tags, say if you wanted to arbitrarily
+    group records, or create a custom search based on a tag context.
+
+        = render 'e9_tags/form', :f => f, :context => [:users, true]
+
