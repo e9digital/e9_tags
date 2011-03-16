@@ -38,17 +38,20 @@ module E9Tags
   PRIVATE_TAG_SUFFIX_REGEX = Regexp.new(Regexp.escape(PRIVATE_TAG_SUFFIX), true)
 
   def E9Tags.escape_context(context)
-    context.to_s.downcase.
+    context.to_s.strip.
+            downcase.
             gsub(/\s+/, ESCAPED_SPACE).
             gsub(/-/, ESCAPED_DASH).
             sub(PRIVATE_TAG_SUFFIX_REGEX, ESCAPED_PRIVATE)
   end
 
   def E9Tags.unescape_context(context)
-    context.to_s.titleize.
+    context.to_s.strip.
             gsub(ESCAPED_SPACE_REGEX, ' ').
             gsub(ESCAPED_DASH_REGEX, '-').
-            sub(ESCAPED_PRIVATE_REGEX, PRIVATE_TAG_SUFFIX)
+            sub(ESCAPED_PRIVATE_REGEX, PRIVATE_TAG_SUFFIX).
+            downcase.
+            titleize
   end
 
   def E9Tags.setup!

@@ -25,7 +25,7 @@ module E9Tags
         context << E9Tags::PRIVATE_TAG_SUFFIX 
       end
 
-      context.titleize
+      context
     end
 
     def tag_list(resource, highlighted_tag = nil, options = {})
