@@ -16,8 +16,16 @@ module E9Tags
       end
     end
 
-    def humanize_context(context)
-      context.gsub(/_/, ' ').titleize
+    def humanize_context(*context_and_is_private)
+      context, is_private = context_and_is_private
+
+      context = E9Tags.unescape_context(context)
+
+      if is_private && context !~ /#{E9Tags::PRIVATE_TAG_SUFFIX_REGEX}$/
+        context << E9Tags::PRIVATE_TAG_SUFFIX 
+      end
+
+      context.titleize
     end
 
     def tag_list(resource, highlighted_tag = nil, options = {})

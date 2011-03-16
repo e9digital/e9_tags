@@ -25,12 +25,28 @@ module E9Tags
   mattr_accessor :models
   @@models = []
 
-  def E9Tags.escape_context(c)
-    c.downcase.gsub(/\s+/, '__S__').gsub(/-/, '__D__').sub(/\(hidden\)/, '__H__')
+  ESCAPED_DASH             = '__D__'
+  ESCAPED_DASH_REGEX       = Regexp.new(Regexp.escape(ESCAPED_DASH), true)
+
+  ESCAPED_SPACE            = '__S__'
+  ESCAPED_SPACE_REGEX      = Regexp.new(Regexp.escape(ESCAPED_SPACE), true)
+
+  ESCAPED_PRIVATE          = '__H__'
+  ESCAPED_PRIVATE_REGEX    = Regexp.new(Regexp.escape(ESCAPED_SPACE), true)
+
+  PRIVATE_TAG_SUFFIX       = '*'
+  PRIVATE_TAG_SUFFIX_REGEX = Regexp.new(Regexp.escape(PRIVATE_TAG_SUFFIX), true)
+
+  def E9Tags.escape_context(context)
+    context.to_s.gsub(/\s+/, ESCAPED_SPACE).
+                 gsub(/-/, ESCAPED_DASH).
+                 sub(PRIVATE_TAG_SUFFIX_REGEX, ESCAPED_PRIVATE)
   end
 
-  def E9Tags.unescape_context(c)
-    c.gsub(/__S__/i, ' ').gsub(/__D__/i, '-').sub(/__H__/, '(hidden)')
+  def E9Tags.unescape_context(context)
+    context.to_s.gsub(ESCAPED_SPACE_REGEX, ' ').
+                 gsub(ESCAPED_DASH_REGEX, '-').
+                 sub(ESCAPED_PRIVATE_REGEX, PRIVATE_TAG_SUFFIX)
   end
 
   def E9Tags.setup!
