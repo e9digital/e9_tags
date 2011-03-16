@@ -1,5 +1,3 @@
-#require File.expand_path('../../../config/environment',  __FILE__) unless defined?(Rails)
-
 module E9Tags::Rack
   class TagContextAutoCompleter
     DEFAULT_LIMIT = 10
