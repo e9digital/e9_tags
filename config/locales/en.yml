@@ -1,7 +1,8 @@
 en:
   e9_tags:
-    tags_name: Tag
+    tags_name: Tags
     add_tag_link: Add
+    delete_tag: Delete
     tag_context_name: Context
     tag_context_visible: "Tags created with this context will be searchable and visible on their tagged content."
     tag_context_hidden: "Tags created with this context will be unsearchable and will not be visible on their tagged content."
