@@ -25,13 +25,13 @@ module E9Tags
   mattr_accessor :models
   @@models = []
 
-  ESCAPED_DASH             = '__D__'
+  ESCAPED_DASH             = '__d__'
   ESCAPED_DASH_REGEX       = Regexp.new(Regexp.escape(ESCAPED_DASH), true)
 
-  ESCAPED_SPACE            = '__S__'
+  ESCAPED_SPACE            = '__s__'
   ESCAPED_SPACE_REGEX      = Regexp.new(Regexp.escape(ESCAPED_SPACE), true)
 
-  ESCAPED_PRIVATE          = '__H__'
+  ESCAPED_PRIVATE          = '__h__'
   ESCAPED_PRIVATE_REGEX    = Regexp.new(Regexp.escape(ESCAPED_PRIVATE), true)
 
   PRIVATE_TAG_SUFFIX       = '*'

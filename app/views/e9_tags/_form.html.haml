@@ -11,8 +11,6 @@
     - else
       .actions
         %input{:type => "checkbox", :id => "tag-context-hidden-cb"}
-        -#%label{:for => "tag-context-hidden-cb", :title => t(:tag_context_visible, :scope => :e9_tags), :"data-toggle-title" => e9_t(:tag_context_hidden)} 
-          -#Visible?
       .field
         = label_tag 'tag-context', t(:tag_context_name, :scope => :e9_tags).singularize
         = text_field_tag 'tag-context', nil
@@ -29,7 +27,7 @@
     - f.object.tagging_contexts(:show_all => true).each do |context|
       - h_context = humanize_context(context)
       %div{:id => "#{context}-context-list", :class => 'context-list'}
-        %span.context-header= h_context
+        %span.context-header= h_context unless local_assigns[:context]
         %ul
           - f.object.tag_list_on(context).each do |tag_word|
             = tag_template(f.object, tag_word, h_context, context)
