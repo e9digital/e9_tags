@@ -20,7 +20,7 @@ module E9Tags::Rack
           # NOTE this select is stolen from Arel::SelectManager's deprecated to_a method, but since Arel has been re-written
           #      (and even before that) it'd probably be smarter here to avoid arel tables and just use AR and to_json
           #   
-          terms = ::ActiveRecord::Base.send(:select, relation.to_sql, 'Tag Context Autocomplete').each do |row| 
+          terms = ::ActiveRecord::Base.send(:select, relation.to_sql, 'Tag Context Autocomplete').map do |row| 
             unescaped_context = E9Tags.unescape_context(row['context'])
 
             { :label => "#{unescaped_context} - #{row['count']}", :value => unescaped_context, :count => row['count'] }

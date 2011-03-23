@@ -25,7 +25,7 @@ module E9Tags::Rack
           # NOTE this select is stolen from Arel::SelectManager's deprecated to_a method, but since Arel has been re-written
           #      (and even before that) it'd probably be smarter here to avoid arel tables and just use AR and to_json
           #   
-          terms = ::ActiveRecord::Base.connection.send(:select, relation.to_sql, 'Tag Autocomplete').each do |row| 
+          terms = ::ActiveRecord::Base.connection.send(:select, relation.to_sql, 'Tag Autocomplete').map do |row| 
             { :label => "#{row['name']} - #{row['count']}", :value => row['name'], :count => row['count'] }
           end
         end
