@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["travis@e9digital.com"]
   s.homepage    = "http://www.e9digital.com"
   s.summary     = %q{Extension to ActsAsTaggableOn used in e9 Rails 3 projects}
-  s.description = File.open('README.md').read rescue nil
+  s.description = File.open('README.rdoc').read rescue nil
 
   s.rubyforge_project = "e9_tags"
 
