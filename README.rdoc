@@ -1,6 +1,6 @@
 == E9Tags
 
-An extension to <tt>ActsAsTaggable</tt> on which "improves" on custom tagging, or at least makes it more dynamic. Additionally it 
+An extension to ActsAsTaggableOn[http://github.com/mbleigh/acts-as-taggable-on] which "improves" on custom tagging, or at least makes it more dynamic. Additionally it 
 provides some autocomplete rack apps and the corresponding javascript.
 
 == Installation
@@ -27,6 +27,17 @@ provides some autocomplete rack apps and the corresponding javascript.
 
         E9Tags.controllers << ContactsController
         E9Tags.models << Contact
+
+    OR
+
+    You can just include the modules in your classes yourself.  The first way really exists for the case where the
+    classes you with to extend are part of another plugin/gem.
+
+        # in contact.rb
+        include E9Tags:Model
+
+        # in contacts_controller.rb
+        include E9Tags::Controller
 
 6.  Render the tags form partial in whatever model forms require it.  
 
