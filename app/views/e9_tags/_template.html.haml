@@ -1,0 +1,5 @@
+%li
+  %span.admin-tag
+    %span= tag
+    = link_to t(:remove_tag), 'javascript:;', :class => 'delete-tag', :title => t(:delete_tag_link_instructions, :scope => :e9_tags)
+  = hidden_field_tag "#{class_name}[#{u_context}_tag_list][]", tag, :id => "#{class_name}_#{u_context}_tag_list"

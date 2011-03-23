@@ -1,19 +1,12 @@
 module E9Tags
   module Helper
     def tag_template(object, tag = "__TAG__", context = "__CONTEXT__", u_context = "__UCONTEXT__")
-      class_name = object.class.name.underscore
-
-      tag_html = ''.html_safe.tap do |buffer|
-        buffer.safe_concat content_tag(:span, tag)
-        buffer.safe_concat content_tag(:a, "Remove", :class => "delete-tag", :title => I18n.t(:delete_tag_link_instructions, :scope => :e9_tags))
-      end
-
-      content_tag(:li) do
-        ''.html_safe.tap do |html|
-          html.safe_concat content_tag(:span, tag_html, :class => "admin-tag")
-          html.safe_concat hidden_field_tag("#{class_name}[#{u_context}_tag_list][]", tag, :id => "#{class_name}_#{u_context}_tag_list")
-        end
-      end
+      render('e9_tags/template', {
+        :tag        => tag,
+        :context    => context,
+        :u_context  => u_context,
+        :class_name => object.class.name.underscore
+      })
     end
 
     def humanize_context(*context_and_is_private)
