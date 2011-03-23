@@ -31,7 +31,7 @@ provides some autocomplete rack apps and the corresponding javascript.
     OR
 
     You can just include the modules in your classes yourself.  The first way really exists for the case where the
-    classes you with to extend are part of another plugin/gem.
+    classes you wish to extend are part of another plugin/gem.
 
         # in contact.rb
         include E9Tags:Model
