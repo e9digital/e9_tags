@@ -55,3 +55,7 @@ provides some autocomplete rack apps and the corresponding javascript.
 
         = render 'e9_tags/form', :f => f, :context => [:users, true]
 
+    NOTE: The form and javascript are intended to work out of the box, but the certainly aren't going to look pretty.
+    If you do intend to use the forms, you'll no doubt need to style them.
+    
+    
