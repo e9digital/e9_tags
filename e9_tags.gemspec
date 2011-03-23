@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Travis Cox"]
   s.email       = ["travis@e9digital.com"]
-  s.homepage    = "http://github.com/e9digital/e9_tags.git"
+  s.homepage    = "http://github.com/e9digital/e9_tags"
   s.summary     = %q{Extension to ActsAsTaggableOn used in e9 Rails 3 projects}
   s.description = File.open('README.rdoc').read rescue nil
 
