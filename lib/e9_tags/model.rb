@@ -86,6 +86,9 @@ module E9Tags
       def self.tagged_with(tags, options = {})
         retv = super
 
+        # for whatever reason, tagged_with by default returns an empty Hash (??) if there are no results
+        return where("1=0") if retv.blank?
+
         # if :show_all is true, just return super with no modification
         #
         if !options[:show_all] && retv.joins_values.present? && retv.to_sql =~ /JOIN taggings (\S+)/
