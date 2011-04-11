@@ -9,8 +9,6 @@
     - if local_assigns[:context]
       = hidden_field_tag 'tag-context', humanize_context(*local_assigns[:context])
     - else
-      .actions
-        %input{:type => "checkbox", :id => "tag-context-hidden-cb"}
       .field
         = label_tag 'tag-context', t(:tag_context_name, :scope => :e9_tags).singularize
         = text_field_tag 'tag-context', nil
