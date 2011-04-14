@@ -80,10 +80,8 @@ module E9Tags
       end
     end
 
-    included do
-      acts_as_taggable
-
-      def self.tagged_with(tags, options = {})
+    module DelayedClassMethods
+      def tagged_with(tags, options = {})
         retv = super
 
         # for whatever reason, tagged_with by default returns an empty Hash (??) if there are no results
@@ -102,10 +100,16 @@ module E9Tags
 
         retv
       end
+    end
+
+    included do
+      acts_as_taggable
+
+      extend DelayedClassMethods
 
       # TODO Tagged_with unfortunately does not handle context-only searches.  Rewriting it to do so would save this unnecessary subquery
       scope :tagged_with_context, lambda {|context|
-        where(:id => select(Arel::Distinct.new(arel_table[:id])).joins(:taggings).where(Tagging.arel_table[:context].eq(Taggable.escape_context(context))).map(&:id))
+        where(:id => select(Arel::Distinct.new(arel_table[:id])).joins(:taggings).where(Tagging.arel_table[:context].eq(E9Tags.escape_context(context))).map(&:id))
       }
 
       def filtered_taggings(*args)

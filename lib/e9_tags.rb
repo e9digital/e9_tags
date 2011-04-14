@@ -1,6 +1,7 @@
 require 'rails'
 require 'acts-as-taggable-on'
 require 'e9_tags/tagging_extension'
+require 'e9_tags/rails_extensions'
 
 module E9Tags
   autoload :Controller, 'e9_tags/controller'
