@@ -47,7 +47,6 @@ module E9Tags
 
     private
 
-    # NOTE this subroutine is kinda useless, should be rewritten to handle both tag list types
     def _tag_list(tags, highlighted_tag = nil)
       content_tag(:div, :class => 'tag-list') do
         tags.each_with_index.map do |tag, index|
@@ -55,7 +54,7 @@ module E9Tags
           link_class = 'tag'
           link_class << ' highlight' if highlighted_tag && highlighted_tag == tag
           link_class << ' last' if index == tags.length - 1
-          link_to(tag, searches_path(:query => tag), :class => link_class)
+          link_to(tag, searches_path(:query => tag), :class => link_class, :rel => "nofollow")
         end.join(', ').html_safe
       end
     end
