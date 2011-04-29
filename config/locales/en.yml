@@ -6,5 +6,5 @@ en:
     tag_context_name: Context
     tag_context_visible: "Tags created with this context will be searchable and visible on their tagged content."
     tag_context_hidden: "Tags created with this context will be unsearchable and will not be visible on their tagged content."
-    tag_instructions: "<p>Tags are words or phrases that describe or classify the content on this page.</p><p>Context allows you to contextualize each tag you enter. For a tag of \"coca cola\" you might give it a context of \"brand\", or you could give it a context of \"soda\".</p><p>Enter a tag, click Add. Repeat to add more.</p><p>Tags suffixed with a * are not publically visible or searchable, making them suitable for organizational purposes.</p>"
+    tag_instructions: "<p>Tags are words or phrases that describe or classify the content on this page.</p><p>Context allows you to contextualize each tag you enter. For a tag of \"coca cola\" you might give it a context of \"brand\", or you could give it a context of \"soda\".</p><p>Enter a tag, click Add. Repeat to add more.</p><p>To use a tag for organizational purposes, create a \"context\" suffixed with an asterisk like \"Hidden*\" - Any tags belonging to this special context will not be publically visible or searchable.</p>"
     delete_tag_link_instructions: Click to remove this tag
