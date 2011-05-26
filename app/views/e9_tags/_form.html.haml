@@ -4,7 +4,11 @@
 <!--END e9_tags_js-->
 
 %fieldset.tags
-  %legend= label_tag 'add-tag-fld', t(:tags_name, :scope => :e9_tags)
+  %legend
+    = label_tag 'add-tag-fld', t(:tags_name, :scope => :e9_tags)
+    -# NOTE this escaping bit doesn't work without a tooltips plugin (browser does not render HTML in default title tooltips)
+    - t = raw t(:tag_instructions, :scope => @tag_instructions_scope || :e9_tags).gsub('"', '&quot;')
+    %span{:title => t, :rel => 'tooltip', :class => 'help'} [?]
   #tag-fields
     - if local_assigns[:context]
       = hidden_field_tag 'tag-context', humanize_context(*local_assigns[:context])
@@ -17,9 +21,6 @@
       = text_field_tag 'add-tag-fld', nil
     .actions
       %button#add-tag-btn= t(:add_tag_link, :scope => :e9_tags)
-      -# NOTE this escaping bit doesn't work without a tooltips plugin (browser does not render HTML in default title tooltips)
-      - t = raw t(:tag_instructions, :scope => :e9_tags).gsub('"', '&quot;')
-      <button title="#{t}" rel="tooltip">?</button>
 
   #tag-contexts{:class => local_assigns[:context] ? 'locked-context' : nil }
     - f.object.tagging_contexts(:show_all => true).each do |context|
