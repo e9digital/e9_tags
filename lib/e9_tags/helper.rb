@@ -34,10 +34,13 @@ module E9Tags
         content_tag(:div, :class => 'tag-lists') do
           ''.html_safe.tap do |html|
             resource.tagging_contexts(options).each do |context|
+              tags = resource.tag_list_on(context)
+
+              next if tags.blank?
+
               str = ''.html_safe
               str.safe_concat content_tag(:div, "#{humanize_context(E9Tags.unescape_context(context))}:", :class => 'heading')
-              str.safe_concat _tag_list(resource.tag_list_on(context), highlighted_tag)
-
+              str.safe_concat _tag_list(tags, highlighted_tag)
               html.safe_concat content_tag(:div, str.html_safe, :class => 'tag-context-list')
             end
           end
