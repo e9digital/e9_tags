@@ -22,6 +22,10 @@ module E9Tags::Rack
             relation = relation.where(taggings[:context].matches(E9Tags.escape_context(@context))) 
           end
 
+          if @except = @params['except']
+            relation = relation.where(tags[:name].not_in(@except))
+          end
+
           # NOTE this select is stolen from Arel::SelectManager's deprecated to_a method, but since Arel has been re-written
           #      (and even before that) it'd probably be smarter here to avoid arel tables and just use AR and to_json
           #   
