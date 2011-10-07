@@ -26,7 +26,7 @@ module E9Tags
 
     module ClassMethods
       def contexts(options = {})
-        scope = arel_table.project(:context)
+        scope = select("DISTINCT #{table_name}.context")
 
         if !options[:show_all]
           condition = arel_table[:context].matches('%__H__')
@@ -34,7 +34,7 @@ module E9Tags
           scope = scope.where(condition)
         end
 
-        scope.map {|row| row.tuple.first }.uniq
+        connection.select_values(scope.to_sql)
       end
     end
   end
